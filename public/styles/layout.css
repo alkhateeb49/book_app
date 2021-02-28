@@ -1,0 +1,14 @@
+header{
+    color: white;
+    height:60px;
+}
+h1{
+    font-size:30px;
+    margin-left:50px;
+    margin-top:50px;
+}
+nav{
+    text-align: center;
+    color: white;
+    background-color: rgb(78, 78, 78);
+}
