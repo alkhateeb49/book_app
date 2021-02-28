@@ -1,9 +1,29 @@
-body{
+@import 'reset.css';
+@import 'modules.css';
+@import 'layout.css';
+
+.result{
     background-color: rgb(177, 177, 177);
+    border: 0px solid black;
+    border-style: none;
+    background-color: rgb(68, 68, 68);
 }
 header{
     background-color: black;
+    /* position: fixed; */
+    top: 0px;
 }
 nav{
+    padding: 13px;
+    font-size:18px;
     background-color: rgb(78, 78, 78);
+}
+.navNew{
+    padding: 15px;
+}
+#subbtn{
+    width:200px;
+    background:black;
+    height: 50px;
+    color: white;
 }
