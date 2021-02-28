@@ -5,28 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book-API</title>
-    <link rel="stylesheet" href="../public/styles/reset.css">
     <link rel="stylesheet" href="../public/styles/base.css">
-    <link rel="stylesheet" href="../public/styles/layout.css">
-    <link rel="stylesheet" href="../public/styles/modules.css">
     ​
 </head>
 
 <body>
     <header>
-        <h1>Welcome</h1>
+        <h1>Best Books!</h1>
     </header>
-    <nav>
+    <nav class="navNew">
         Google Search
     </nav>
 
     <form action="/searches" method="POST">
 
-        <input type="text" name="search" placeholder="Enter a title or author">
+        <input type="text" name="search" placeholder="Enter a title or author"><br>
         <input type="radio" id="Title" name="title" value="title">
-        <label for="Title">Title</label><br>
+        
+        <label for="Title">Title</label><br><br>
         <input type="radio" id="Author" name="title" value="author">
-        <label for="Author">Author</label><br>
+        <label for="Author">Author</label><br><br><br>
         <input type="submit" id="subbtn" value="GoogleBooks">
     </form>
 </body>
