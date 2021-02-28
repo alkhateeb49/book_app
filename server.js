@@ -14,14 +14,14 @@ app.use('/public', express.static('./public'));
 //
 
 app.get('/',handleHome);
-app.get('/search',handleSearch);
+app.get('/searches/new',handleSearch);
 
 function handleHome(req,res){
   res.render('pages/index');
 }
 
 function handleSearch(req,res){
-  res.render('pages/index');
+  res.render('pages/searches/new');
 }
 
 
