@@ -20,13 +20,15 @@
         Google Search
     </nav>
 
-    <form action="/show" method="GET">
+    <form action="/searches" method="POST">
 
-        <input type="text" name="title" placeholder="Enter a title">
+        <input type="text" name="search" placeholder="Enter a title or author">
+
         <input type="radio" id="Title" name="Title" value="Title">
         <label for="Title">Title</label><br>
-        <input type="radio" id="Author" name="Author" value="Author">
+        <input type="radio" id="Author" name="Title" value="Author">
         <label for="Author">Author</label><br>
+        
         <input type="submit" id="subbtn" value="search the google box api">
     </form>
 </body>
