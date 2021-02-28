@@ -22,7 +22,7 @@
 
         <% arrayBook.map(valueData =>{%>
         <div>
-            <img src="./public/styles/NOTAV.jpg" alt="">
+            <img src="<%= valueData.image;%>" alt="">
             <h2><%= valueData.title;%> </h2>
             <h2><%= valueData.author;%> </h2>
             <p><%= valueData.description;%> </p>

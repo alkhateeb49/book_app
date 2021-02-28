@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const superAgent = require('superagent');
-const { search } = require('superagent');
+// const { search } = require('superagent');
 
 
 let app = express();
@@ -31,50 +31,47 @@ function handleSearch(req, res) {
 const bookURL = 'https://www.googleapis.com/books/v1/volumes';
 
 function handleShow(req, res) {
-  // res.render('pages/searches/new');
-  let searchQuery = req.body.search;
-  let searchIn = req.body.title;
-  let searchQueryAndIn = searchQuery + '+in' +searchIn;
-  showData(searchQueryAndIn, res);
+  try {
+    let searchQuery = req.body.search;
+    let searchIn = req.body.title;
+    let searchQueryAndIn = searchQuery + '+in+' + searchIn;
+    showData(searchQueryAndIn, res);
+  } catch (error) {
+    res.render('pages/error', { error: error });
+  }
 }
 
 let arrayBook = [];
 function showData(searchQueryAndIn, res) {
+  arrayBook = [];
   const bookQuery = {
     q: searchQueryAndIn
   }
-  superAgent.get(bookURL).query(bookQuery).then(data=>{
-    // console.log(data);
-    // res.status(200).send(data.publisher);
-    // res.status(200).send(data.body.items);
-    // console.log(data.body.items[0].volumeInfo.title);
-    res.status(200).send(data.body.items[0]);
-    // let authorsData = data.body.items[0].volumeInfo.authors[0];
-    // data.body.items.map(valueData =>{
-      for (let i = 0; i < 10; i++) {
-        let bookConst = new Book (data.body.items[i].volumeInfo.title, data.body.items[i].volumeInfo.authors, data.body.items[i].volumeInfo.description);
-        arrayBook.push(bookConst);
-
-        
-      }
-      
-    res.status(200).send(arrayBook);
-    // res.status(200).send(data.body.items[0].volumeInfo.authors);
-      // for (let i = 0; i < 20; i++) { 
-      //   if ( data.body.items[i].volumeInfo.description != null) {
-      //     console.log(data.body.items[i].volumeInfo.description);
-      //   }
-      // }
-    // res.status(200).send(data.body.items[0].volumeInfo);
-    // res.render('pages/searches/show', {arrayBook:arrayBook});
+  superAgent.get(bookURL).query(bookQuery).then(data => {
+    for (let i = 0; i < 10; i++) {
+      var des, auth,image;
+      if (data.body.items[i].volumeInfo.description === undefined) {
+        des = 'undefined';
+      } else { des = data.body.items[i].volumeInfo.description; }
+      if (data.body.items[i].volumeInfo.authors === undefined) {
+        auth = 'undefined';
+      } else { auth = data.body.items[i].volumeInfo.authors; }
+      if (data.body.items[i].volumeInfo.imageLinks === undefined) {
+        image = './public/styles/NOTAV.jpg';
+      } else { image = data.body.items[i].volumeInfo.imageLinks.thumbnail; }
+      let bookConst = new Book(data.body.items[i].volumeInfo.title, auth, des,image);
+      arrayBook.push(bookConst);
+    }
+    res.render('pages/searches/show', { arrayBook: arrayBook });
 
   });
 }
 
-function Book (title, authors, description) {
+function Book(title, authors, description,image) {
   this.title = title;
   this.authors = authors;
   this.description = description;
+  this.image=image;
 }
 
 app.listen(PORT, () => {
