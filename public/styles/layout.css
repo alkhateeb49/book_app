@@ -19,11 +19,7 @@ h2{
 p{
     font-weight:300;
 }
-nav{
-    text-align: center;
-    color: white;
-    background-color: rgb(78, 78, 78);
-}
+
 form{
     padding: 25px;
     text-align: center;

@@ -12,7 +12,8 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 
 //
-app.use('/public', express.static('./public'));
+// app.use('/public', express.static('./public'));
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 //
 
@@ -41,38 +42,37 @@ function handleShow(req, res) {
   }
 }
 
-let arrayBook = [];
+
 function showData(searchQueryAndIn, res) {
-  arrayBook = [];
+
   const bookQuery = {
-    q: searchQueryAndIn
+    q: searchQueryAndIn,
+    maxResults:10
   }
   superAgent.get(bookURL).query(bookQuery).then(data => {
-    for (let i = 0; i < 10; i++) {
-      var des, auth,image;
-      if (data.body.items[i].volumeInfo.description === undefined) {
+    let arrayBook = data.body.items.map(ogj => {
+      var des, auth, image;
+      if (ogj.volumeInfo.description === undefined) {
         des = 'undefined';
-      } else { des = data.body.items[i].volumeInfo.description; }
-      if (data.body.items[i].volumeInfo.authors === undefined) {
+      } else { des = ogj.volumeInfo.description; }
+      if (ogj.volumeInfo.authors === undefined) {
         auth = 'undefined';
-      } else { auth = data.body.items[i].volumeInfo.authors; }
-      if (data.body.items[i].volumeInfo.imageLinks === undefined) {
+      } else { auth = ogj.volumeInfo.authors; }
+      if (ogj.volumeInfo.imageLinks === undefined) {
         image = './public/styles/NOTAV.jpg';
-      } else { image = data.body.items[i].volumeInfo.imageLinks.thumbnail; }
+      } else { image = ogj.volumeInfo.imageLinks.thumbnail; }
       image = image.replace(/^http:\/\//i, 'https://');
-      let bookConst = new Book(data.body.items[i].volumeInfo.title, auth, des,image);
-      arrayBook.push(bookConst);
-    }
+      return new Book(ogj.volumeInfo.title, auth, des, image);
+    });
     res.render('pages/searches/show', { arrayBook: arrayBook });
-
   });
 }
 
-function Book(title, authors, description,image) {
+function Book(title, authors, description, image) {
   this.title = title;
   this.authors = authors;
   this.description = description;
-  this.image=image;
+  this.image = image;
 }
 
 app.listen(PORT, () => {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book-API</title>
-    <link rel="stylesheet" href="../public/styles/base.css">
-    ​
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles/reset.css">
+        <link rel="stylesheet" href="styles/base.css">
+        <title>Book APi</title>
+    </head>
 
 <body class="result">
     <header>
@@ -19,10 +19,10 @@
     <div class="parent">
             <% arrayBook.map(valueData =>{%>
                 <div class="child">
-                <img src="<%= valueData.image;%>" alt="">
-                <h2 class="title"><%= valueData.title;%> </h2>
-                <h2><%= valueData.author;%> </h2>
-                <p><%= valueData.description;%> </p>
+                <img src="<%= valueData.image;%>" alt=""><br>
+                <h2 class="title"><%= valueData.title;%></h2><br>
+                <h2><%= valueData.authors;%> </h2><br>
+                <p><%= valueData.description;%> </p><br>
             </div>
                 <% }); %>
     </div >

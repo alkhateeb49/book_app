@@ -1,6 +1,6 @@
-@import 'reset.css';
+/* @import 'reset.css';
 @import 'modules.css';
-@import 'layout.css';
+@import 'layout.css'; */
 
 .result{
     background-color: rgb(177, 177, 177);
@@ -10,20 +10,49 @@
 }
 header{
     background-color: black;
-    /* position: fixed; */
-    top: 0px;
+    width: 100%;
+    color: white;
+    height:60px;
+    font-size:30px;
 }
-nav{
-    padding: 13px;
-    font-size:18px;
-    background-color: rgb(78, 78, 78);
-}
-.navNew{
-    padding: 15px;
-}
+
 #subbtn{
     width:200px;
     background:black;
     height: 50px;
     color: white;
+}
+.parent{
+    /* display: flex; */
+    justify-content: center;
+    justify-content: space-around;
+    text-align: center;
+    position: relative;
+    width: 100px;
+    left: 25%;
+    background-color: rgb(68, 68, 68);
+    /* background-color: DodgerBlue; */
+  }
+.child{
+      box-shadow: 10px 7px 5px grey;
+      /* height: 300px; */
+      width: 450px;
+      padding: 20px;
+      background-color: rgb(214, 213, 213);
+  }
+img{
+      border: white solid 7px;
+  }
+h2{
+    font-weight:bolder;
+}
+.title{
+    color: white;
+}
+form{
+    padding: 25px;
+    text-align: center;
+}
+body{
+    background-color: rgb(161, 160, 160);
 }
