@@ -59,6 +59,7 @@ function showData(searchQueryAndIn, res) {
       if (data.body.items[i].volumeInfo.imageLinks === undefined) {
         image = './public/styles/NOTAV.jpg';
       } else { image = data.body.items[i].volumeInfo.imageLinks.thumbnail; }
+      image = image.replace(/^http:\/\//i, 'https://');
       let bookConst = new Book(data.body.items[i].volumeInfo.title, auth, des,image);
       arrayBook.push(bookConst);
     }
