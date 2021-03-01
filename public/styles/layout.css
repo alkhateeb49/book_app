@@ -4,7 +4,6 @@ header{
     font-size:30px;
     text-align: left;
     /* position: fixed; */
-
 }
 h1{
     /* margin-left:50px;
@@ -19,12 +18,10 @@ h2{
 p{
     font-weight:300;
 }
-
 form{
     padding: 25px;
     text-align: center;
 }
 body{
-    
     background-color: rgb(161, 160, 160);
 }
