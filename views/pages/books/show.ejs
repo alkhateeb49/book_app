@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles/reset.css">
-        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="../styles/reset.css">
+        <link rel="stylesheet" href="../styles/base.css">
         <title>Book APi</title>
     </head>
 
@@ -15,15 +15,16 @@
     </header>
     <nav>
         Google Search
-    </nav>
+    </nav> 
 
     <div class="parent">
         <% bookDetails.forEach(valueData =>{%>
             <div class="child">
-            <img src="<%= valueData.image;%>" alt=""><br>
+            <img src="<%= valueData.image_url;%>" alt=""><br>
             <h2 class="title"><%= valueData.title;%></h2><br>
-            <h2><%= valueData.authors;%> </h2><br>
+            <h3><%= valueData.authors;%> </h3><br>
             <p><%= valueData.description;%> </p><br>
+            <p><%= valueData.isbn;%> </p><br>
 
         </div>
             <% }); %>
