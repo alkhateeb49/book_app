@@ -1,0 +1,21 @@
+
+    <div id="updatediv"  style="display: none;">
+    <% editBooks.forEach((valueData) =>{%>
+        <form action="/books/<%= valueData.id%>?_method=PUT" method="POST"><br>
+            <img src="<%= valueData.image_url %>" alt=""><br>
+            <input type="text" name="image" value="<%= valueData.image_url %>" hidden><br>
+            <label class="ulab">Title</label><br>
+            <input type="text" name="title" value="<%= valueData.title;%>" placeholder="Title"><br>
+            <label class="ulab">ISBN</label><br>
+            <input type="text" name="isbn" value="<%= valueData.isbn;%>" placeholder="ISBN"> <br>
+            <label class="ulab">Author</label><br>
+            <input type="text" name="authors" value="<%= valueData.author;%>" placeholder="Author"><br><br>
+            <label class="ulab">Description</label><br>
+            <textarea name="description" rows=10 cols="30" placeholder="description"><%= valueData.description;%></textarea>
+            <br>
+        <button type="submit">Update</button>
+        <button onclick="update()">Close</button>
+
+        </form>
+    </div>
+        <% }); %>

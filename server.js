@@ -22,22 +22,25 @@ let pg = require('pg');
 const client = new pg.Client({ connectionString: process.env.DATABASE_URL,ssl: { rejectUnauthorized: false } });
 //
 
+//
+const override = require('method-override');
+app.use(override('_method'));
+//
+
 app.get('/', favRender);
 app.get('/searches/new', handleSearch);
 app.post('/searches', handleShow);
 
 app.post('/books', favBook);
 app.get('/books/:id', detailsButton);
+app.delete('/books/:delete_id', deleteBook);
+app.put('/books/:update_id', updateBook);
 
-
-
-// function handleHome(req, res) {
-//   res.render('pages/index');
-// }
 
 function handleSearch(req, res) {
   res.render('pages/searches/new');
 }
+
 
 const bookURL = 'https://www.googleapis.com/books/v1/volumes';
 
@@ -63,17 +66,17 @@ function showData(searchQueryAndIn, res) {
     let arrayBook = data.body.items.map(ogj => {
       var des, auth, image, isbn;
       if (ogj.volumeInfo.description === undefined) {
-        des = 'undefined';
+        des = 'No description provided';
       } else { des = ogj.volumeInfo.description; }
       if (ogj.volumeInfo.authors === undefined) {
-        auth = 'undefined';
+        auth = 'No authors provided';
       } else { auth = ogj.volumeInfo.authors; }
       if (ogj.volumeInfo.imageLinks === undefined) {
         image = 'styles/NOTAV.jpg';
       } else { image = ogj.volumeInfo.imageLinks.thumbnail; }
       image = image.replace(/^http:\/\//i, 'https://');
       if (ogj.volumeInfo.industryIdentifiers === undefined) {
-        isbn = 'undefined';
+        isbn = 'No ISBN provided';
       } else { isbn = ogj.volumeInfo.industryIdentifiers[0].type + ' ' + ogj.volumeInfo.industryIdentifiers[0].identifier; }
       return new Book(ogj.volumeInfo.title, auth, des, image, isbn);
     });
@@ -137,4 +140,27 @@ function detailsButton(req, res) {
 
     res.render('pages/books/show', { bookDetails: data.rows });
   })
+}
+
+
+function deleteBook(req, res) {
+  let id = req.params.delete_id;
+  client.query(`DELETE FROM books WHERE id = ${id};`).then(data => {
+    res.redirect(`/`);
+  });
+}
+
+function updateBook(req, res) {
+  let id = req.params.update_id;
+  let authors = req.body.authors;
+  let title = req.body.title;
+  let isbn = req.body.isbn;
+  let image = req.body.image;
+  let description = req.body.description;
+
+  let SQL = `UPDATE books SET author =$1 ,title = $2 ,isbn= $3 ,image_url=$4 ,description=$5 WHERE id = $6;`;
+  let value = [authors, title, isbn, image, description, id];
+  console.log(value);
+  client.query(SQL, value);
+  res.redirect(`/books/${id}`)
 }

@@ -11,58 +11,32 @@
 </head>
 
 <body>
-
-    <header>
-        <nav>
-            <h1>Best Books! </h1>
-            <a href="/searches/new">Search</a>
-            <a href="/">Home</a>
-        </nav>
-    </header>
+    <%- include('../../layout/header') %>
     <div class="container">
         <div class="header">
-            <h1> Search By Tilte Or Author </h1>
         </div>
         <div class="form-contanier">
 
-            <form action="/searches" method="post">
+            <form action="/searches" method="post" id="search">
                 <div claas="searh">
-                    <input type="text" name="search" placeholder="Enter title or auther name">
+                    <input id="searchname" type="text" name="search" placeholder="Enter title or auther name">
                 </div>
                 <div class="check-cont">
                     <div class="checkbox">
                         <label for="title-radio">Title</label>
-                        <input type="radio" name="title" value="title">
+                        <input id="title-radio" type="radio" name="title" value="title">
                     </div>
                     <div class="checkbox">
                         <label for="auther-radio">Author</label>
-                        <input type="radio" name="title" value="author">
+                        <input id="auther-radio" type="radio" name="title" value="author">
                     </div>
                 </div>
                 <div class="button">
                     <input type="submit" id="subbtn" Value="Search the Google Books API">
                 </div>
             </form>
-
-
-
-
-
         </div>
     </div>
-
-    <footer>
-        <ul>
-            <li> <i class="fas fa-circle"></i></li>
-            <li> <i class="fas fa-circle"></i></li>
-            <li> <i class="fas fa-circle"></i></li>
-            <li> <i class="fas fa-circle"></i></li>
-            <li> <i class="fas fa-circle"></i></li>
-        </ul>
-    </footer>
-
-
-
 
 </body>
 
