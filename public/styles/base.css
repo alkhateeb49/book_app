@@ -16,9 +16,30 @@ header{
     padding-top: 15px;
 }
 nav{
-    height: 30px;
-    background-color: rgb(59, 59, 59);
-    padding-top: 18px;
+    background-color: #000;
+    color : white;
+    height: 6vh;
+    text-align: left;
+    display: flex;
+    justify-content: start;
+    text-align: left;
+    width: 100%;
+}
+nav h1 {
+    margin-left: 2%;
+    font-size: 2rem;
+    width: 100%;
+}
+nav a{
+    color: white;
+    margin-right:2%;
+}
+#conut{
+    text-align: center;
+    margin-left: 2%;
+    font-size:40px;
+    font-weight: bolder;
+    color:white;
 }
 #subbtn{
     width:200px;
@@ -68,4 +89,14 @@ form{
 }
 body{
     background-color: rgb(161, 160, 160);
+}
+@media (max-width: 450px){
+    nav h1 {
+        margin: 20px;
+        font-size:15px;
+        width: 100%;
+    }
+    nav a{
+        font-size:20px;
+    }
 }

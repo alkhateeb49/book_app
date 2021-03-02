@@ -12,14 +12,15 @@
 
     <header>
         <nav>
-            <h1>Welcome Best Books! </h1>
+            <h1> Best Books! </h1>
+            <a href="/searches/new">Search</a>
+            <a href="/">Home</a>
         </nav>
     </header>
-    <a href="/searches/new">Search</a>
-
+    <p id="conut">Count: <%=savedBook.rowCount;%> </p>
     <br><br><br>
     <div class="parent">
-        <% savedBook.forEach(valueData =>{%>
+        <% savedBook.rows.forEach(valueData =>{%>
             <div class="child">
             <img src="<%= valueData.image_url;%>" alt=""><br>
             <h2 class="title"><%= valueData.title;%></h2><br>
@@ -27,12 +28,6 @@
             <p><%= valueData.description;%> </p><br>
 
             <form action="/books/<%=valueData.id%>" method="get">
-                <input type="text" name="id" value="<%= valueData.id;%>" style="display: none;">
-                <input type="text" name="image" value="<%= valueData.image;%>" style="display: none;">
-                <input type="text" name="title" value="<%= valueData.title;%>"  style="display: none;">
-                <input type="text" name="isbn" value="<%= valueData.isbn;%>"  style="display: none;"> 
-                <input type="text" name="authors" value="<%= valueData.authors;%>"  style="display: none;">
-                <input type="text" name="description" value="<%= valueData.description;%>" style="display: none;" >
             <button type="submit">View</button>
             </form>
         </div>

@@ -69,7 +69,7 @@ function showData(searchQueryAndIn, res) {
         auth = 'undefined';
       } else { auth = ogj.volumeInfo.authors; }
       if (ogj.volumeInfo.imageLinks === undefined) {
-        image = './public/styles/NOTAV.jpg';
+        image = 'styles/NOTAV.jpg';
       } else { image = ogj.volumeInfo.imageLinks.thumbnail; }
       image = image.replace(/^http:\/\//i, 'https://');
       if (ogj.volumeInfo.industryIdentifiers === undefined) {
@@ -101,7 +101,7 @@ client.connect().then((data) => {
 
 
 
-function favBook(req,res) {
+function favBook(req, res) {
   let image_url = req.body.image;
   let title = req.body.title;
   let authors = req.body.authors;
@@ -111,16 +111,23 @@ function favBook(req,res) {
   let insertQuery = 'INSERT INTO books(author,title,isbn,image_url,description) VALUES($1, $2, $3, $4, $5)';
   let value = [authors, title, isbn, image_url, description];
   client.query(insertQuery, value).then(data => {
+
     console.log('data returned back from db ', data);
-    res.redirect('/searches/new');
-  }).catch(error => {console.log(error);});
-  res.redirect('/');
+    let idQuery = 'SELECT * FROM books ORDER BY id DESC LIMIT 1';
+    client.query(idQuery).then(data => {
+      res.redirect('/books/' + data.rows[0].id);
+    });
+
+  }).catch(error => { console.log(error); });
+
+
+
 }
 
 
 function favRender(req, res) {
   client.query(`SELECT * FROM books`).then(data => {
-    res.render('pages/index', { savedBook: data.rows });
+    res.render('pages/index', { savedBook: data });
   });
 }
 
