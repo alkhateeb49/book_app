@@ -10,16 +10,7 @@
     </head>
 
 <body class="result">
-    <header>
-        <nav>
-            <h1>Best Books! </h1>
-            <a href="/searches/new">Search</a>
-            <a href="/">Home</a>
-        </nav>
-    </header>
-    <nav>
-        Google Search
-    </nav>
+    <%- include('../../layout/header') %>
     <div class="parent">
             <% arrayBook.map(valueData =>{%>
                 <div class="child">
@@ -42,6 +33,7 @@
 
 
 
+    <%- include('../../layout/footer') %>
 
 </body>
 

@@ -1,23 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles/reset.css">
-        <link rel="stylesheet" href="styles/base.css">
-        <title>Book APi</title>
-    </head>
+    <%- include('../layout/head') %>
 <body>
-
-    <header>
-        <nav>
-            <h1> Best Books! </h1>
-            <a href="/searches/new">Search</a>
-            <a href="/">Home</a>
-        </nav>
-    </header>
-    <p id="conut">Count: <%=savedBook.rowCount;%> </p>
+    <%- include('../layout/header') %>
+    <br>
+    <p id="conut">Number Of Books: <%=savedBook.rowCount;%> </p>
     <br><br><br>
     <div class="parent">
         <% savedBook.rows.forEach(valueData =>{%>
@@ -32,10 +19,9 @@
             </form>
         </div>
             <% }); %>
-</div >
+    </div >
 
 
-
+<%- include('../layout/footer') %>
 </body>
-
 </html>
